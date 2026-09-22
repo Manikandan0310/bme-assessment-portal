@@ -3,7 +3,7 @@
    'correct' must be one letter: A, B, C or D.
    Re-export this file whenever your question bank changes, then
    commit it to your repo so GitHub Pages serves the new questions. */
-const QUESTIONS = [
+window.QUESTIONS = [
   {
     q: "Which sensor is most commonly used for non-invasive heart-rate monitoring in wearables?",
     options: { A: "Thermocouple", B: "Photoplethysmography (PPG) sensor", C: "Strain gauge", D: "Hall effect sensor" },
