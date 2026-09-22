@@ -2,7 +2,7 @@
    CSV columns expected: username,password,name
    Re-export this file whenever your student list changes, then
    commit it to your repo so GitHub Pages serves the new list. */
-const STUDENTS = [
+window.STUDENTS = [
   { username: "demo01", password: "pass123", name: "Demo Student One" },
   { username: "demo02", password: "pass123", name: "Demo Student Two" }
 ];
