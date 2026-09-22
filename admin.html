@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Assessment Data Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="hallmark">
+  <div class="seal">A</div>
+  <div class="title">Admin — Assessment Data Tools</div>
+  <div class="sub"><a href="index.html">← Back to student portal</a></div>
+</div>
+
+<div class="admin-wrap">
+
+  <div class="admin-card">
+    <h2>1. Student login list</h2>
+    <p class="hint">CSV columns: <span class="mono">username,password,name</span>. Produces <span class="mono">data/students-data.js</span> — commit it to your repo to update who can log in.</p>
+    <label class="file-input-btn" for="studentsCsv">Choose students CSV</label>
+    <input type="file" id="studentsCsv" accept=".csv">
+    <span class="badge" id="studentsBadge">no file loaded</span>
+    <div id="studentsPreview"></div>
+    <button class="btn amber" id="studentsDownload" style="width:auto;margin-top:14px;" disabled>Download students-data.js</button>
+  </div>
+
+  <div class="admin-card">
+    <h2>2. Question bank</h2>
+    <p class="hint">CSV columns: <span class="mono">question,optionA,optionB,optionC,optionD,correct</span> (correct = A/B/C/D). Produces <span class="mono">data/questions-data.js</span>.</p>
+    <label class="file-input-btn" for="questionsCsv">Choose questions CSV</label>
+    <input type="file" id="questionsCsv" accept=".csv">
+    <span class="badge" id="questionsBadge">no file loaded</span>
+    <div id="questionsPreview"></div>
+    <button class="btn amber" id="questionsDownload" style="width:auto;margin-top:14px;" disabled>Download questions-data.js</button>
+  </div>
+
+  <div class="admin-card">
+    <h2>3. Build the rank list</h2>
+    <p class="hint">After the test, collect each student's auto-downloaded <span class="mono">result_&lt;username&gt;.csv</span> file (ask them to email it, or gather via a shared drive folder). Select them all here — they'll be merged and sorted by score.</p>
+    <label class="file-input-btn" for="resultsCsv">Choose result CSV files (multiple)</label>
+    <input type="file" id="resultsCsv" accept=".csv" multiple>
+    <span class="badge" id="resultsBadge">no files loaded</span>
+    <div id="resultsPreview"></div>
+    <button class="btn amber" id="resultsDownload" style="width:auto;margin-top:14px;" disabled>Download rank_list.csv</button>
+  </div>
+
+  <div class="admin-card">
+    <h2>Why upload happens like this</h2>
+    <p class="hint" style="margin:0;">
+      GitHub Pages only serves static files — there's no server to receive uploads live. So this tool converts your CSVs into plain JS/CSV files on your computer, which you then commit to the repository (or drag into GitHub's web uploader). Once committed, every student visiting the site sees the update immediately.
+    </p>
+  </div>
+
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

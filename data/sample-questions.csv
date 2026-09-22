@@ -1,0 +1,4 @@
+question,optionA,optionB,optionC,optionD,correct
+Which sensor is most commonly used for non-invasive heart-rate monitoring in wearables?,Thermocouple,Photoplethysmography (PPG) sensor,Strain gauge,Hall effect sensor,B
+In a Brain-Computer Interface the P300 signal is best described as a:,Slow cortical potential,Motor imagery rhythm,Event-related potential occurring ~300ms post-stimulus,Muscle artifact,C
+Which protocol is most suited for low-power short-range IoT sensor networks?,HTTP/2,Zigbee,FTP,SMTP,B

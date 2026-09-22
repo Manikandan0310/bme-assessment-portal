@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Departmental Online Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="hallmark">
+  <div class="seal">E</div>
+  <div class="title">Online Assessment Portal</div>
+  <div class="sub" id="clockLine">—</div>
+</div>
+
+<!-- ========== LOGIN ========== -->
+<section id="view-login" class="sheet-wrap">
+  <form class="sheet" id="loginForm" autocomplete="off">
+    <h1>Sign in to begin</h1>
+    <p class="lede">Enter the credentials issued to you by your department.</p>
+    <div class="error-line" id="loginError">Incorrect username or password.</div>
+    <div class="field">
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" required>
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+    </div>
+    <button class="btn" type="submit">Continue</button>
+  </form>
+</section>
+
+<!-- ========== INSTRUCTIONS ========== -->
+<section id="view-instructions" class="sheet-wrap" style="display:none">
+  <div class="sheet wide">
+    <h1>Before you start</h1>
+    <p class="lede">Welcome, <span id="instrName" class="mono"></span>. Read carefully — this test is proctored.</p>
+    <ul class="rules">
+      <li><span class="num">01</span><span>The test has <b id="qCountLabel">—</b> multiple-choice questions. Answer one at a time; you can revisit earlier questions before submitting.</span></li>
+      <li><span class="num">02</span><span>Your camera stays on for the full test. A small preview appears on the right so you can see what's monitored.</span></li>
+      <li><span class="num">03</span><span>Keep your face inside the frame. The ring turns red and a warning appears if you move out of view.</span></li>
+      <li><span class="num">04</span><span>Switching browser tabs or leaving the window is also logged as a warning.</span></li>
+      <li><span class="num">05</span><span>Once you press <b>Submit Test</b>, your answers are final and cannot be changed.</span></li>
+    </ul>
+    <div class="consent">
+      <input type="checkbox" id="camConsent">
+      <label for="camConsent">I understand this test uses my camera for monitoring, and I consent to that for the duration of the test.</label>
+    </div>
+    <div class="error-line" id="camError">Camera access is required to start the test. Please allow camera permission and try again.</div>
+    <button class="btn amber" id="startBtn" disabled>Enable camera &amp; start test</button>
+  </div>
+</section>
+
+<!-- ========== TEST ========== -->
+<section id="view-test" style="display:none">
+  <div class="exam-shell" id="examShell">
+    <div class="exam-topbar">
+      <div class="who">Candidate: <b id="topName" class="mono"></b></div>
+      <div class="timer mono" id="elapsed">00:00</div>
+    </div>
+
+    <div class="progress-rail">
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="height:0%"></div></div>
+      <div class="progress-count mono" id="progCount">0 / 0</div>
+    </div>
+
+    <div class="q-col">
+      <div class="q-meta">
+        <div class="q-index mono" id="qIndex">QUESTION 1</div>
+        <div class="q-flag" id="qAnsweredFlag"></div>
+      </div>
+      <div class="q-text" id="qText">—</div>
+      <div id="qOptions"></div>
+      <div class="nav-row">
+        <button class="btn ghost" id="prevBtn" type="button">← Previous</button>
+        <button class="btn" id="nextBtn" type="button">Next →</button>
+        <button class="btn amber" id="submitBtn" type="button" style="display:none">Submit Test</button>
+      </div>
+    </div>
+
+    <div class="cam-rail">
+      <div class="cam-frame" id="camFrame">
+        <video id="camVideo" autoplay muted playsinline></video>
+      </div>
+      <div class="cam-status mono" id="camStatus">FACE OK</div>
+      <div class="cam-warn" id="camWarn">Face not visible — please face the camera.</div>
+      <div class="cam-log mono">Warnings: <span id="violationCount">0</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESULT ========== -->
+<section id="view-result" class="sheet-wrap" style="display:none">
+  <div class="sheet">
+    <h1>Test submitted</h1>
+    <p class="lede">Your responses have been recorded. A copy has also downloaded to your device — please keep it until results are confirmed.</p>
+    <div class="result-score mono" id="resultScore">0 / 0</div>
+    <div class="result-sub">Score for <b id="resultName"></b></div>
+    <div class="result-grid">
+      <div class="result-cell"><div class="n mono" id="resultCorrect">0</div><div class="l">Correct</div></div>
+      <div class="result-cell"><div class="n mono" id="resultViolations">0</div><div class="l">Proctoring warnings</div></div>
+    </div>
+    <button class="btn outline" id="downloadAgainBtn">Download result CSV again</button>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+<script src="data/students-data.js"></script>
+<script src="data/questions-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
